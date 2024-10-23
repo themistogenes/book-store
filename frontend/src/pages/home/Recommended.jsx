@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect} from 'react'
 import BookCard from '../books/BookCard'
 
 // Swiper React components
@@ -10,11 +10,8 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
-const categories = ['Choose genre', 'Business', 'Fiction', 'Horror', 'Adventure'];
-
-const TopSellers = () => {
+const Recommended = () => {
   const [books, setBooks] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('Choose genre');
 
   useEffect(() => {
     fetch('books.json')
@@ -22,32 +19,9 @@ const TopSellers = () => {
       .then(data => setBooks(data))
   }, [])
 
-  const filteredBooks = selectedCategory === 'Choose genre' ? (
-    books
-  ) : (
-    books.filter(book => book.category === selectedCategory.toLowerCase())
-  );
-
-  console.log(filteredBooks);
-
   return (
-    <div className="py-10">
-      <h2 className="text-3xl font-semibold mb-6">Top Sellers</h2>
-      {/* category filter */}
-      <div className="mb-8 flex items-center">
-        <select 
-          name="category" 
-          id="category" 
-          className="border bg-[#EAEAEA] border-gray-300 rounded-md px-4 py-2 focus:outline-none"
-          onChange={(e) => setSelectedCategory(e.target.value)}
-        >
-          {
-            categories.map((category, index) => (
-              <option key={index} value={category}>{category}</option>
-            ))
-          }
-        </select>
-      </div>
+    <div className="py-16">
+      <h2 className="text-3xl font-semibold mb-6">Recommended</h2>
 
       <Swiper
         slidesPerView={1}
@@ -75,7 +49,7 @@ const TopSellers = () => {
         className="mySwiper"
       >
         {
-          filteredBooks.length > 0 && filteredBooks.map((book, index) => (
+          books.length > 0 && books.slice(8, 18).map((book, index) => (
             <SwiperSlide key={index}>
               <BookCard book={book} />
             </SwiperSlide>
@@ -86,4 +60,4 @@ const TopSellers = () => {
   )
 }
 
-export default TopSellers
+export default Recommended

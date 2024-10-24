@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { GiBookCover } from 'react-icons/gi'
 import { 
-  HiMiniBars3CenterLeft, 
+  // HiMiniBars3CenterLeft, 
   HiOutlineHeart, 
   HiOutlineShoppingCart 
 } from 'react-icons/hi2'
@@ -27,7 +28,8 @@ const Navbar = () => {
         {/* left side */}
         <div className="flex items-center md:gap-16 gap-4">
           <Link to="/">
-            <HiMiniBars3CenterLeft className="size-6" />
+            {/* <HiMiniBars3CenterLeft className="size-6" /> */}
+            <GiBookCover className="size-12" />
           </Link>
           {/* search input */}
           <div className="relative sm:w-72 w-40 space-x-2">
